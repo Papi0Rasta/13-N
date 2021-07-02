@@ -30,15 +30,14 @@ void    ft_putnbr(int nb){
 
 int     ft_recursive_factorial(int nb){
 	int time = nb - 1;
-        if(time < 0){
+        if(time < 0)
                 return 0;
-        }else if(time == 0){
+        if(time == 0)
                 return 1;
-        }else if(time > 0){
-        	return (nb * ft_recursive_factorial(nb-1));
-	}
+        if(time > 0)
+        	return (nb * ft_recursive_factorial(time));
 }
 int     main(){
-        ft_putnbr(ft_recursive_factorial(3));
+        ft_putnbr(ft_recursive_factorial(5));
         return 0;
 }
