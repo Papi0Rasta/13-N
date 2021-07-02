@@ -1,32 +1,34 @@
 /* ************************************************************************** */
 /*                                                                            */
 /*                                                        :::      ::::::::   */
-/*   ft_strcapitalize.c                                 :+:      :+:    :+:   */
+/*   ft_putnbr.c                                        :+:      :+:    :+:   */
 /*                                                    +:+ +:+         +:+     */
 /*   By: nors <marvin@42.fr>                        +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
-/*   Created: 2021/06/28 19:46:56 by nors              #+#    #+#             */
-/*   Updated: 2021/06/28 19:46:56 by nors             ###   ########.fr       */
+/*   Created: 2021/07/02 00:41:15 by nors              #+#    #+#             */
+/*   Updated: 2021/07/02 00:41:15 by nors             ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
 #include <unistd.h>
 
-char	*ft_strcapitalize(char *str){
-	int i=0;
-	while(str[i]){
-		if((str[i-1] < '0' || str[i-1] > '9') && (str[i-1] < 'A' || str[i-1] > 'Z') && (str[i-1] < 'a' || str[i-1] > 'z')){
-			if(str[i] > 'a' && str[i] < 'z'){
-				str[i] = str[i] - 32;
-			}
-		}
-		i++;
+void	ft_putchar(char c){
+	write(1,&c,1);
+}
+
+void	ft_putnbr(int nb){
+	if(nb > 9){
+		ft_putnbr(nb / 10);
+		ft_putchar(nb % 10 + '0');
+	}else if(nb >= 0){
+		ft_putchar(nb + '0');
+	}else{
+		ft_putchar('-');
+		ft_putnbr(nb * -1);
 	}
-	return str;
 }
 
 int	main(){
-	char str[62] = "salut, comment tu vas ? 42mots quarante-deux; cinquante+et+un";
-	ft_strcapitalize(str);
-	write(1, str,61);
+	ft_putnbr(-55);
+	return 0;
 }
